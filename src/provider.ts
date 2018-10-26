@@ -30,5 +30,5 @@ export interface WebLNProvider {
   sendPayment(paymentRequest: string): Promise<SendPaymentResponse>;
   makeInvoice(amount: string): Promise<RequestInvoiceResponse>;
   signMessage(message: string): Promise<SignMessageResponse>;
-  verifyMessage(signedMessage: string): Promise<void>;
+  verifyMessage(signedMessage: string, rawMessage: string): Promise<void>;
 }

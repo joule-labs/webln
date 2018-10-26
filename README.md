@@ -1,0 +1,71 @@
+# WebLN
+
+This library provides the spec and client libraries for WebLN, a way of
+interacting with a user's Lightning node via the browser.
+
+**Heads up: This spec is in early alpha, and is subject to a _lot_ of change.
+Join in the discussion in the issue queue, and try not to build any mainnet
+software off of it yet!**
+
+
+
+## Client Library
+
+Apps that want to enable WebLN payments can use the client library in
+`webln/lib/client`. It provides the following functions:
+
+### requestProvider()
+
+Attempts to acquire and enable a WebLN provider.
+
+#### Arguments
+
+_N/A_
+
+#### Returns
+
+Promise<WebLNProvider> (see below) that's already been `enable()`d.
+
+#### Throws
+
+* If no providers are available
+* If the provider rejects the `enable()` call (e.g. user doesn't confirm)
+
+
+
+## Provider Spec
+
+Providers must implement the interface provided in `webln/lib/provider`.
+The spec is as follows:
+
+```.ts
+export interface WebLNProvider {
+  /* Determines if the WebLNProvider will allow the page to use it */
+  enable(): Promise<void>;
+
+  /* Returns some basic information about the node */
+  getInfo(): Promise<GetInfoResponse>;
+
+  /* Prompts the user with a BOLT-11 payment request */
+  sendPayment(paymentRequest: string): Promise<SendPaymentResponse>;
+
+  /* Prompts the user to provide the page with an invoice */
+  makeInvoice(amount: string): Promise<RequestInvoiceResponse>;
+
+  /* Prompts the user to sign a message with their private key */
+  signMessage(message: string): Promise<SignMessageResponse>;
+
+  /* Shows the user a view that verifies a signed message */
+  verifyMessage(signedMessage: string, rawMessage: string): Promise<void>;
+}
+```
+
+See the typescript definitions for more detail about response shapes. The spec
+is far from complete, and will need more functions to be fully-fledged, but
+these methods should cover most use-cases.
+
+
+## Contributing
+
+Please [join the issue queue](https://github.com/wbobeirne/webln/issues) to
+discuss the future of the WebLN spec.
