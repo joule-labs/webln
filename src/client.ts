@@ -5,14 +5,13 @@ import { WebLNProvider } from './provider';
  * The methodology here is pretty brittle, so it could use some changes.
  *
  * TODO: Handle multiple provider registrations?
- * TODO: Something more sophistacted than while true loop
  */
 
 export interface GetProviderParameters {
   pubkey?: string;
 }
 
-export async function requestProvider(_: GetProviderParameters = {}): Promise<WebLNProvider> {
+export function requestProvider(_: GetProviderParameters = {}): Promise<WebLNProvider> {
   if (typeof window === 'undefined') {
     throw new Error('Must be called in a browser context');
   }
