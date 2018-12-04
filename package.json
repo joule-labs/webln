@@ -1,11 +1,13 @@
 {
   "name": "webln",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Spec and tools around implementing WebLN",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "build": "tsc",
     "prepublish": "npm run build"
