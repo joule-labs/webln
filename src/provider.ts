@@ -16,6 +16,14 @@ export interface SendPaymentResponse {
   preimage: string;
 }
 
+export interface RequestInvoiceArgs {
+  amount?: string | number;
+  defaultAmount?: string | number;
+  minimumAmount?: string | number;
+  maximumAmount?: string | number;
+  defaultMemo?: string;
+}
+
 export interface RequestInvoiceResponse {
   paymentRequest: string;
 }
@@ -28,7 +36,7 @@ export interface WebLNProvider {
   enable(): Promise<void>;
   getInfo(): Promise<GetInfoResponse>;
   sendPayment(paymentRequest: string): Promise<SendPaymentResponse>;
-  makeInvoice(amount: string): Promise<RequestInvoiceResponse>;
+  makeInvoice(args: string | number | RequestInvoiceArgs): Promise<RequestInvoiceResponse>;
   signMessage(message: string): Promise<SignMessageResponse>;
   verifyMessage(signedMessage: string, rawMessage: string): Promise<void>;
 }
