@@ -16,7 +16,9 @@ Apps that want to enable WebLN payments can use the client library in
 
 ### requestProvider()
 
-Attempts to acquire and enable a WebLN provider.
+Attempts to acquire and enable a WebLN provider. It's recommended
+you wait to run this until after `DOMContentLoaded` to ensure that
+any client providers have had time to inject the WebLN instance.
 
 #### Arguments
 
@@ -31,6 +33,24 @@ Promise<WebLNProvider> (see below) that's already been `enable()`d.
 * If no providers are available
 * If the provider rejects the `enable()` call (e.g. user doesn't confirm)
 
+#### Example
+
+```ts
+import { requestProvider } from 'webln/lib/client';
+
+let webln;
+try {
+  webln = await requestProvider();
+} catch (err) {
+  // Handle users without WebLN
+}
+
+// Elsewhere in the code...
+if (webln) {
+  // Call webln functions
+}
+```
+
 
 
 ## Provider Spec
@@ -38,7 +58,7 @@ Promise<WebLNProvider> (see below) that's already been `enable()`d.
 Providers must implement the interface provided in `webln/lib/provider`.
 The spec is as follows:
 
-```.ts
+```ts
 export interface WebLNProvider {
   /* Determines if the WebLNProvider will allow the page to use it */
   enable(): Promise<void>;
@@ -50,7 +70,7 @@ export interface WebLNProvider {
   sendPayment(paymentRequest: string): Promise<SendPaymentResponse>;
 
   /* Prompts the user to provide the page with an invoice */
-  makeInvoice(amount: string): Promise<RequestInvoiceResponse>;
+  makeInvoice(amount: string | number | RequestInvoiceArgs): Promise<RequestInvoiceResponse>;
 
   /* Prompts the user to sign a message with their private key */
   signMessage(message: string): Promise<SignMessageResponse>;
@@ -60,9 +80,10 @@ export interface WebLNProvider {
 }
 ```
 
-See the typescript definitions for more detail about response shapes. The spec
-is far from complete, and will need more functions to be fully-fledged, but
-these methods should cover most use-cases.
+See the [typescript definitions](https://github.com/wbobeirne/webln/blob/master/src/provider.ts)
+for more detail about request objects and response shapes. The spec
+is far from complete, and will need more functions to be fully-fledged,
+but these methods should cover most use-cases.
 
 
 ## Contributing
