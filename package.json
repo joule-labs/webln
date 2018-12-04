@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
+  "files": ["lib"],
   "scripts": {
     "build": "tsc",
     "prepublish": "npm run build"
