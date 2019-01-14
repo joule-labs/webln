@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Hello, webln!</title>
+</head>
+<body>
+<h1>Hello, webln!</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            GetInfo
+        </div>
+        <div class="col" id="getinfo">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <a href="javascript:sendPayment()">I want to pay 1 sat</a>
+        </div>
+        <div class="col" id="sendpayment">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <a href="javascript:makeInvoice()">I want receive 1 sat</a>
+        </div>
+        <div class="col" id="makeinvoice">
+        </div>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script>
+	let webln;
+
+	$( document ).ready(function() {
+		console.log( "ready!" );
+		if (typeof requestProvider !== 'undefined') {
+          requestProvider()
+            .then((ret) => {
+              	webln = ret;
+
+	            webln.getInfo().then((info) => $('#getinfo').text(JSON.stringify(info)));
+            })
+            .catch((err) => console.log('Error acquiring webln:', err));
+        }
+	});
+
+    function sendPayment() {
+    	console.log('sendPayment');
+    	if (webln) {
+    		let invoice = 'lnbc10n1pwr68rlpp52jzfhtlzzwjw0l8wg67j08nwqny2nt0f7ucwzye9j4j8jwzhd5jsdq8w3jhxaqcqp2zz7mrktwl4luch68ktzjhz0ep8hg2fj4xvdp7vvswhzahrw6fxrnshmkgkdgnz7tk98ltrjsw76ptl0rsy6j83lhyj89gmrk6fcyyesq7nlj2j';
+    		webln.sendPayment(invoice)
+              .then((response) => $('#sendpayment').text(JSON.stringify(response)))
+              .catch((error) => $('#sendpayment').text(JSON.stringify(error)));
+        }
+    }
+
+    function makeInvoice() {
+    	console.log('makeinvoice');
+    	if (webln) {
+    		webln.makeInvoice(1)
+              .then((response) => $('#makeinvoice').text(JSON.stringify(response)))
+              .catch((error) => $('#makeinvoice').text(JSON.stringify(error)));
+        }
+    }
+
+</script>
+</body>
+</html>
