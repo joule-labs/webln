@@ -1,6 +1,6 @@
 {
   "name": "webln",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Spec and tools around implementing WebLN",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
