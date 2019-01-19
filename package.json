@@ -4,18 +4,24 @@
   "description": "Spec and tools around implementing WebLN",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "unpkg": "dist/webln.js",
   "license": "MIT",
   "files": [
-    "lib"
+    "lib",
+    "dist"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && rollup -c",
     "prepublish": "npm run build"
   },
   "devDependencies": {
+    "rollup": "1.1.0",
+    "rollup-plugin-terser": "4.0.2",
+    "rollup-plugin-typescript2": "0.19.2",
     "typescript": "3.1.3"
   },
   "dependencies": {
     "@types/chrome": "0.0.74"
-  }
+  },
+  "sideEffects": false
 }

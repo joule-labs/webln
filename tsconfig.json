@@ -1,17 +1,14 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
+    "module": "esnext",
     "outDir": "lib",
     "rootDir": "src/",
     "declaration": true,
     "strict": true,
-    "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitAny": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
     "lib": ["es2017", "dom"]
   },
   "include": ["src"]

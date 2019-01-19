@@ -36,7 +36,7 @@ Promise<WebLNProvider> (see below) that's already been `enable()`d.
 #### Example
 
 ```ts
-import { requestProvider } from 'webln/lib/client';
+import { requestProvider } from 'webln';
 
 let webln;
 try {
