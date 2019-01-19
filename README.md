@@ -7,6 +7,25 @@ interacting with a user's Lightning node via the browser.
 Join in the discussion in the issue queue, and try not to build any mainnet
 software off of it yet!**
 
+## Installation
+
+For use in node-built projects, install via npm or yarn:
+
+```bash
+npm install webln
+# OR #
+yarn add webln
+```
+
+If you don't have a build system, you can add the following script tag to your
+project which will add all functionality under the global `WebLN` namespace:
+```html
+<script
+  src="https://unpkg.com/webln@0.1.0/dist/webln.min.js"
+  integrity="sha384-KbiwDLn7g4wD+1fs5EA/1c6p4Zzy0u8RwWObPvI+ty1WpALihdyvjF7/yKJzJk/I" crossorigin="anonymous"
+></script>
+```
+<sup>Make sure you leave the integrity hash in to prevent possibly malicious JS</sup>
 
 
 ## Client Library
