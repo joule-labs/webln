@@ -1,6 +1,14 @@
 import typescript from 'rollup-plugin-typescript2';
 import { terser } from 'rollup-plugin-terser';
 
+const typescriptOptions = {
+  tsconfigOverride: {
+    compilerOptions: {
+      module: 'es2015',
+    },
+  },
+};
+
 export default [
   // UMD (Development)
   {
@@ -10,7 +18,7 @@ export default [
       format: 'umd',
       name: 'WebLN',
     },
-    plugins: [typescript()],
+    plugins: [typescript(typescriptOptions)],
   },
   // UMD (Production)
   {
@@ -22,7 +30,7 @@ export default [
       indent: false,
     },
     plugins: [
-      typescript(),
+      typescript(typescriptOptions),
       terser({
         compress: {
           pure_getters: true,
