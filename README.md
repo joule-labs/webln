@@ -105,6 +105,49 @@ is far from complete, and will need more functions to be fully-fledged,
 but these methods should cover most use-cases.
 
 
+## Errors
+
+Both apps and providers will want to make use of WebLN's pre-defined errors.
+They can be found in `webln/lib/errors` and should be used when throwing and
+handling errors to best inform the user of what's going on:
+
+```ts
+// For example, an app should check if an uncommon method isn't supported,
+// and let the user know what to do.
+import { requestProvider } from 'webln/lib/client';
+import { UnsupportedMethodError } from 'webln/lib/errors';
+
+async function signMsg(msg: string) {
+  try {
+    const webln = await requestProvider();
+    const res = await webln.signMessage(msg);
+    return res;
+  } catch(err) {
+    if (err.constructor === UnsupportedMethodError) {
+      alert('Your WebLN provider doesn’t support message signing, please email support@app.com for manual verification');
+    } else {
+      alert(err.message);
+    }
+  }
+```
+
+And the provider should throw the correct error when possible:
+
+```ts
+// And a provider should correctly throw this error
+import { WebLNProvider } from 'webln/lib/provider';
+import { UnsupportedMethodError } from 'webln/lib/errors';
+
+class MyProvider extends WebLNProvider {
+  signMessage() {
+    throw new UnsupportedMethodError('MyProvider doesn’t support message signatures!');
+  }
+}
+```
+
+See the [full list of error types](https://github.com/wbobeirne/webln/blob/master/src/errors.ts)
+for more information.
+
 ## Contributing
 
 Please [join the issue queue](https://github.com/wbobeirne/webln/issues) to
