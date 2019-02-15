@@ -3,9 +3,9 @@
 This library provides the spec and client libraries for WebLN, a way of
 interacting with a user's Lightning node via the browser.
 
-**Heads up: This spec is in early alpha, and is subject to a _lot_ of change.
-Join in the discussion in the issue queue, and try not to build any mainnet
-software off of it yet!**
+**Heads up: This spec is in early stages, and is subject to change.
+Join in the discussion in the issue queue, and please be mindful
+when building apps with it!**
 
 ## Installation
 
