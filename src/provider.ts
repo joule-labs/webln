@@ -29,7 +29,8 @@ export interface RequestInvoiceResponse {
 }
 
 export interface SignMessageResponse {
-  signedMessage: string;
+  message: string;
+  signature: string;
 }
 
 export interface WebLNProvider {
