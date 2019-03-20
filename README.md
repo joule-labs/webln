@@ -95,7 +95,7 @@ export interface WebLNProvider {
   signMessage(message: string): Promise<SignMessageResponse>;
 
   /* Shows the user a view that verifies a signed message */
-  verifyMessage(signedMessage: string, rawMessage: string): Promise<void>;
+  verifyMessage(signature: string, message: string): Promise<void>;
 }
 ```
 

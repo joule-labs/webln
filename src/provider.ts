@@ -29,7 +29,8 @@ export interface RequestInvoiceResponse {
 }
 
 export interface SignMessageResponse {
-  signedMessage: string;
+  message: string;
+  signature: string;
 }
 
 export interface WebLNProvider {
@@ -38,5 +39,5 @@ export interface WebLNProvider {
   sendPayment(paymentRequest: string): Promise<SendPaymentResponse>;
   makeInvoice(args: string | number | RequestInvoiceArgs): Promise<RequestInvoiceResponse>;
   signMessage(message: string): Promise<SignMessageResponse>;
-  verifyMessage(signedMessage: string, rawMessage: string): Promise<void>;
+  verifyMessage(signature: string, message: string): Promise<void>;
 }
