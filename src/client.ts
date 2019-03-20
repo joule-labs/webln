@@ -1,4 +1,5 @@
 import { WebLNProvider } from './provider';
+import { MissingProviderError } from './errors';
 
 /**
  * Everything needed to get and set providers on the client.
@@ -18,7 +19,7 @@ export function requestProvider(_: GetProviderParameters = {}): Promise<WebLNPro
 
   const webln: WebLNProvider = (window as any).webln;
   if (!webln) {
-    throw new Error('Your browser does not support WebLN');
+    throw new MissingProviderError('Your browser has no WebLN provider');
   }
 
   return webln.enable().then(() => webln);
