@@ -21,8 +21,9 @@ If you don't have a build system, you can add the following script tag to your
 project which will add all functionality under the global `WebLN` namespace:
 ```html
 <script
-  src="https://unpkg.com/webln@0.1.0/dist/webln.min.js"
-  integrity="sha384-KbiwDLn7g4wD+1fs5EA/1c6p4Zzy0u8RwWObPvI+ty1WpALihdyvjF7/yKJzJk/I" crossorigin="anonymous"
+  src="https://unpkg.com/webln@0.2.0/dist/webln.min.js"
+  integrity="sha384-mTReBqbhPO7ljQeIoFaD1NYS2KiYMwFJhUNpdwLj+VIuhhjvHQlZ1XpwzAvd93nQ"
+  crossorigin="anonymous"
 ></script>
 ```
 <sup>Make sure you leave the integrity hash in to prevent possibly malicious JS</sup>
@@ -55,7 +56,7 @@ Promise<WebLNProvider> (see below) that's already been `enable()`d.
 #### Example
 
 ```ts
-import { requestProvider } from 'webln/lib/client';
+import { requestProvider } from 'webln';
 
 let webln;
 try {
@@ -114,7 +115,7 @@ handling errors to best inform the user of what's going on:
 ```ts
 // For example, an app should check if an uncommon method isn't supported,
 // and let the user know what to do.
-import { requestProvider } from 'webln/lib/client';
+import { requestProvider } from 'webln';
 import { UnsupportedMethodError } from 'webln/lib/errors';
 
 async function signMsg(msg: string) {
@@ -135,7 +136,7 @@ And the provider should throw the correct error when possible:
 
 ```ts
 // And a provider should correctly throw this error
-import { WebLNProvider } from 'webln/lib/provider';
+import { WebLNProvider } from 'webln';
 import { UnsupportedMethodError } from 'webln/lib/errors';
 
 class MyProvider extends WebLNProvider {
