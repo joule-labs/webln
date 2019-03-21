@@ -4,6 +4,7 @@ import { terser } from 'rollup-plugin-terser';
 const typescriptOptions = {
   tsconfigOverride: {
     compilerOptions: {
+      declaration: false,
       module: 'es2015',
     },
   },
