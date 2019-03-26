@@ -7,7 +7,15 @@ interacting with a user's Lightning node via the browser.
 Join in the discussion in the issue queue, and please be mindful
 when building apps with it!**
 
-## Installation
+## Documentation and Demos
+
+Check out the documentation site at https://webln.dev/
+
+If you'd like to contribute to the documentation, you can find it over at https://github.com/wbobeirne/webln-docs
+
+## TL;DR Docs
+
+### Installation
 
 For use in node-built projects, install via npm or yarn:
 
@@ -28,32 +36,9 @@ project which will add all functionality under the global `WebLN` namespace:
 ```
 <sup>Make sure you leave the integrity hash in to prevent possibly malicious JS</sup>
 
+### Client Library
 
-## Client Library
-
-Apps that want to enable WebLN payments can use the client library in
-`webln/lib/client`. It provides the following functions:
-
-### requestProvider()
-
-Attempts to acquire and enable a WebLN provider. It's recommended
-you wait to run this until after `DOMContentLoaded` to ensure that
-any client providers have had time to inject the WebLN instance.
-
-#### Arguments
-
-_N/A_
-
-#### Returns
-
-Promise<WebLNProvider> (see below) that's already been `enable()`d.
-
-#### Throws
-
-* If no providers are available
-* If the provider rejects the `enable()` call (e.g. user doesn't confirm)
-
-#### Example
+Apps that want to enable WebLN interactions can use the `requestProvider` function to grab a WebLN provider:
 
 ```ts
 import { requestProvider } from 'webln';
@@ -72,10 +57,9 @@ if (webln) {
 ```
 
 
+### WebLN Provider
 
-## Provider Spec
-
-Providers must implement the interface provided in `webln/lib/provider`.
+Providers are classes that implement the interface provided in `webln/lib/provider`.
 The spec is as follows:
 
 ```ts
@@ -106,7 +90,7 @@ is far from complete, and will need more functions to be fully-fledged,
 but these methods should cover most use-cases.
 
 
-## Errors
+### Errors
 
 Both apps and providers will want to make use of WebLN's pre-defined errors.
 They can be found in `webln/lib/errors` and should be used when throwing and
