@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "unpkg": "dist/webln.js",
+  "repository": "https://github.com/joule-labs/webln",
   "license": "MIT",
   "files": [
     "lib",
