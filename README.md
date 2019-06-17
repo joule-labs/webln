@@ -29,8 +29,8 @@ If you don't have a build system, you can add the following script tag to your
 project which will add all functionality under the global `WebLN` namespace:
 ```html
 <script
-  src="https://unpkg.com/webln@0.2.0/dist/webln.min.js"
-  integrity="sha384-mTReBqbhPO7ljQeIoFaD1NYS2KiYMwFJhUNpdwLj+VIuhhjvHQlZ1XpwzAvd93nQ"
+  src="https://unpkg.com/webln@0.2.1/dist/webln.min.js"
+  integrity="sha384-Enk2tnv6U0yPoFk7RasscZ5oQIG2fzVYaG4ledkAf7MdEXP9fMazV74tAgEwvxm7"
   crossorigin="anonymous"
 ></script>
 ```
