@@ -73,6 +73,9 @@ export interface WebLNProvider {
   /* Prompts the user with a BOLT-11 payment request */
   sendPayment(paymentRequest: string): Promise<SendPaymentResponse>;
 
+  /* Sends a keysend payment to a node without needing an invoice */
+  keysend(pubkey: string, amount: number | string): Promise<SendPaymentResponse>;
+
   /* Prompts the user to provide the page with an invoice */
   makeInvoice(amount: string | number | RequestInvoiceArgs): Promise<RequestInvoiceResponse>;
 
