@@ -27,7 +27,7 @@ export interface RequestInvoiceArgs {
 export interface KeysendArgs {
   destination: string;
   customRecords?: Record<string, string>;
-  amount: string;
+  amount: string | number;
 }
 
 export interface RequestInvoiceResponse {
