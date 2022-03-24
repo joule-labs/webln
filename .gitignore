@@ -3,3 +3,4 @@ lib
 dist
 *.log
 .rpt2_cache
+.DS_Store
