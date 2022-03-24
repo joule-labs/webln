@@ -39,6 +39,9 @@ export default [
           unsafe_comps: true,
           warnings: false,
         },
+        format: {
+          comments: false,
+        },
       }),
     ],
   },
