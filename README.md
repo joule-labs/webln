@@ -27,13 +27,15 @@ yarn add webln
 
 If you don't have a build system, you can add the following script tag to your
 project which will add all functionality under the global `WebLN` namespace:
+
 ```html
 <script
-  src="https://unpkg.com/webln@0.3.0/dist/webln.min.js"
-  integrity="sha384-g4CABMESGmsa44I6J+t/4fY3DYGpbl8EjqX4L8g6rmD0RLjVinenmzEDqSH3f1QV"
+  src="https://unpkg.com/webln@0.3.1/dist/webln.min.js"
+  integrity="sha384-TddsmDgTQUTU/yuktBl5LSb8Y+QQqknQ19Lx2E0FraOK451Wv63kQ6iZFPrkmeEB"
   crossorigin="anonymous"
 ></script>
 ```
+
 <sup>Make sure you leave the integrity hash in to prevent possibly malicious JS</sup>
 
 ### Client Library
@@ -41,7 +43,7 @@ project which will add all functionality under the global `WebLN` namespace:
 Apps that want to enable WebLN interactions can use the `requestProvider` function to grab a WebLN provider:
 
 ```ts
-import { requestProvider } from 'webln';
+import { requestProvider } from "webln";
 
 let webln;
 try {
@@ -55,7 +57,6 @@ if (webln) {
   // Call webln functions
 }
 ```
-
 
 ### WebLN Provider
 
@@ -77,7 +78,9 @@ export interface WebLNProvider {
   keysend(args: KeysendArgs): Promise<SendPaymentResponse>;
 
   /* Prompts the user to provide the page with an invoice */
-  makeInvoice(amount: string | number | RequestInvoiceArgs): Promise<RequestInvoiceResponse>;
+  makeInvoice(
+    amount: string | number | RequestInvoiceArgs
+  ): Promise<RequestInvoiceResponse>;
 
   /* Prompts the user to sign a message with their private key */
   signMessage(message: string): Promise<SignMessageResponse>;
@@ -91,7 +94,6 @@ See the [typescript definitions](https://github.com/wbobeirne/webln/blob/master/
 for more detail about request objects and response shapes. The spec
 is far from complete, and will need more functions to be fully-fledged,
 but these methods should cover most use-cases.
-
 
 ### Errors
 
@@ -123,12 +125,14 @@ And the provider should throw the correct error when possible:
 
 ```ts
 // And a provider should correctly throw this error
-import { WebLNProvider } from 'webln';
-import { UnsupportedMethodError } from 'webln/lib/errors';
+import { WebLNProvider } from "webln";
+import { UnsupportedMethodError } from "webln/lib/errors";
 
 class MyProvider extends WebLNProvider {
   signMessage() {
-    throw new UnsupportedMethodError('MyProvider doesn’t support message signatures!');
+    throw new UnsupportedMethodError(
+      "MyProvider doesn’t support message signatures!"
+    );
   }
 }
 ```
