@@ -14,7 +14,7 @@ interface ErrorConstructor {
 function fixError(
   error: Error,
   newTarget: ErrorConstructor,
-  errorType: ErrorConstructor,
+  errorType: ErrorConstructor
 ) {
   Object.setPrototypeOf(error, errorType.prototype);
 
@@ -41,19 +41,17 @@ function fixStack(stack: string, functionName: string) {
   const exclusion: RegExp = new RegExp(`\\s+at\\s${functionName}\\s`);
 
   const lines = stack.split("\n");
-  const resultLines = lines.filter(line => !line.match(exclusion));
+  const resultLines = lines.filter((line) => !line.match(exclusion));
   return resultLines.join("\n");
 }
 
-
 /// CUSTOM ERRORS ///
-
 
 // When no WebLN provider is available
 export class MissingProviderError extends Error {
   constructor(message: string) {
     super(message);
-    fixError(this, new.target, RejectionError);
+    fixError(this, new.target, MissingProviderError);
   }
 }
 
@@ -85,7 +83,7 @@ export class UnsupportedMethodError extends Error {
 export class RoutingError extends Error {
   constructor(message: string) {
     super(message);
-    fixError(this, new.target, RejectionError);
+    fixError(this, new.target, RoutingError);
   }
 }
 
@@ -93,7 +91,7 @@ export class RoutingError extends Error {
 export class InvalidDataError extends Error {
   constructor(message: string) {
     super(message);
-    fixError(this, new.target, RejectionError);
+    fixError(this, new.target, InvalidDataError);
   }
 }
 
@@ -101,6 +99,6 @@ export class InvalidDataError extends Error {
 export class InternalError extends Error {
   constructor(message: string) {
     super(message);
-    fixError(this, new.target, RejectionError);
+    fixError(this, new.target, InternalError);
   }
 }
