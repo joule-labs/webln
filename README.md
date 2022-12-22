@@ -30,8 +30,8 @@ project which will add all functionality under the global `WebLN` namespace:
 
 ```html
 <script
-  src="https://unpkg.com/webln@0.3.1/dist/webln.min.js"
-  integrity="sha384-TddsmDgTQUTU/yuktBl5LSb8Y+QQqknQ19Lx2E0FraOK451Wv63kQ6iZFPrkmeEB"
+  src="https://unpkg.com/webln@0.3.2/dist/webln.min.js"
+  integrity="sha384-MpjpvOQqXz9nCoLUS/sR0bhLwGYuNPMOBN50jsqhnqAzDq0GiOI0u6oC5fHitzI2"
   crossorigin="anonymous"
 ></script>
 ```
