@@ -1,0 +1,26 @@
+import { AdditionalString } from "./types";
+
+export type RequestMethod =
+  | "getinfo"
+  | "listchannels"
+  | "listinvoices"
+  | "channelbalance"
+  | "walletbalance"
+  | "openchannel"
+  | "connectpeer"
+  | "disconnectpeer"
+  | "estimatefee"
+  | "getchaninfo"
+  | "getnetworkinfo"
+  | "getnodeinfo"
+  | "gettransactions"
+  | "listpayments"
+  | "listpeers"
+  | "lookupinvoice"
+  | "queryroutes"
+  | "verifymessage"
+  | "sendtoroute"
+  | "decodepayreq"
+  | "routermc"
+  | "addinvoice"
+  | AdditionalString;
